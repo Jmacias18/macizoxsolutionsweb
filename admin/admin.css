@@ -331,3 +331,9 @@ button.miniatura { cursor: pointer; touch-action: manipulation; }
   .pestanas [aria-selected="false"]:hover { color: var(--color-text); }
   button.miniatura:hover { border-color: var(--color-accent-text); }
 }
+
+/* Celular angosto (360 px): que el logo no empuje los botones fuera de la pantalla */
+@media (max-width: 400px) {
+  .barra .logo.con-marca { gap: var(--space-2); }
+  .barra .logo-marca { width: 28px; height: 28px; }
+}

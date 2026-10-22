@@ -358,6 +358,8 @@ footer { position: relative; padding: var(--space-7) 0 calc(var(--space-9) + env
   section { padding-block: var(--space-8); }
   .nav-links a:not(.btn) { display: none; }
   .nav .logo small { display: none; } /* el subtítulo se parte junto al botón; el hero ya lo dice */
+  .nav .logo-marca { width: 32px; height: 32px; }
+  .nav .logo.con-marca { gap: var(--space-2); }
   .hero { padding-block: var(--space-7) var(--space-8); }
   .hero .lead { font-size: var(--text-base); }
   .banner { padding: var(--space-6) var(--space-5); }
@@ -400,4 +402,9 @@ footer { position: relative; padding: var(--space-7) 0 calc(var(--space-9) + env
   .product, .service, .contact-item, .proyecto { transition: none; }
   .product:hover, .service:hover, a.contact-item:hover, .proyecto:hover { transform: none; }
   .proyecto:hover .proyecto-pantalla img { transform: none; }
+}
+
+/* Celular angosto (360 px): logo + nombre + botón de WhatsApp en una línea */
+@media (max-width: 400px) {
+  .nav .logo { font-size: var(--text-base); }
 }

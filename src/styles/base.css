@@ -64,6 +64,8 @@ code { font-size: 0.9em; color: var(--color-accent-text); }
 /* Logo */
 .logo { font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg); letter-spacing: 0.01em; line-height: 1.1; }
 .logo span { color: var(--color-accent-text); }
+.logo.con-marca { display: inline-flex; align-items: center; gap: var(--space-3); }
+.logo-marca { flex-shrink: 0; border-radius: 50%; box-shadow: 0 0 18px rgba(124, 58, 237, 0.35); }
 .logo small {
   display: block; font-family: var(--font-body); font-size: 0.625rem; font-weight: 600;
   letter-spacing: 0.18em; color: var(--color-text-muted); margin-top: 2px;
