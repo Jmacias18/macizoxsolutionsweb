@@ -54,11 +54,11 @@ code { font-size: 0.9em; color: var(--color-accent-text); }
 /* Ceros y unos (src/fondo-codigo.js): más tenues al centro, donde va el texto */
 .fondo-codigo {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  mask-image: linear-gradient(90deg, #000, rgba(0, 0, 0, 0.4) 28%, rgba(0, 0, 0, 0.4) 72%, #000);
-  -webkit-mask-image: linear-gradient(90deg, #000, rgba(0, 0, 0, 0.4) 28%, rgba(0, 0, 0, 0.4) 72%, #000);
+  mask-image: linear-gradient(90deg, #000, rgba(0, 0, 0, 0.62) 28%, rgba(0, 0, 0, 0.62) 72%, #000);
+  -webkit-mask-image: linear-gradient(90deg, #000, rgba(0, 0, 0, 0.62) 28%, rgba(0, 0, 0, 0.62) 72%, #000);
 }
 @media (max-width: 640px) { /* pantalla angosta: casi todo es "centro" */
-  .fondo-codigo { mask-image: none; -webkit-mask-image: none; opacity: 0.75; }
+  .fondo-codigo { mask-image: none; -webkit-mask-image: none; opacity: 0.9; }
 }
 
 /* Logo */

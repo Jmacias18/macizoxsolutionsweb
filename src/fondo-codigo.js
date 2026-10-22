@@ -1,10 +1,10 @@
-// Fondo de código: columnas de ceros y unos (con algún símbolo de programación)
+// Fondo de código: columnas de ceros y unos mezclados con símbolos de programación
 // que bajan despacio detrás del contenido. Va en un <canvas> dentro de .fondo.
-// - Tenue a propósito: el texto de la página siempre manda.
+// - Visible pero sin competir con el texto (más tenue al centro, ver base.css).
 // - ~24 cuadros por segundo y se pausa si la pestaña no está visible.
 // - Con "reducir movimiento" se dibuja una sola vez, quieto.
 
-const SIMBOLOS = ["</>", "{ }", "=>", "&&", "fn", "if", "0x", "[ ]", ";"];
+const SIMBOLOS = ["</>", "{ }", "=>", "&&", "||", "fn", "if", "0x", "[ ]", ";", "( )", "!=", "===", "++", "//", "#", "$", "<div>", "npm", "git", "const", "let", "async", "return", "css", "html", "js", "sql", "api", "null", "true", "for", "404", "200"];
 const FPS = 24;
 
 export function iniciarFondoCodigo(contenedor) {
@@ -17,7 +17,7 @@ export function iniciarFondoCodigo(contenedor) {
   let columnas = [], ancho = 0, alto = 0, paso = 0, tam = 0, raf = 0, ultimo = 0;
 
   const azar = (a, b) => a + Math.random() * (b - a);
-  const caracter = () => (Math.random() < 0.06
+  const caracter = () => (Math.random() < 0.22
     ? SIMBOLOS[(Math.random() * SIMBOLOS.length) | 0]
     : Math.random() < 0.5 ? "0" : "1");
 
@@ -29,7 +29,7 @@ export function iniciarFondoCodigo(contenedor) {
       vel: azar(0.35, 1.1),          // px por cuadro, lento
       largo,
       chars: Array.from({ length: largo }, caracter),
-      brillo: azar(0.35, 1),         // unas columnas más visibles que otras
+      brillo: azar(0.5, 1),          // unas columnas más visibles que otras
     };
   }
 
@@ -43,7 +43,7 @@ export function iniciarFondoCodigo(contenedor) {
     const sep = ancho < 640 ? 34 : 28;  // en celular, menos columnas
     columnas = [];
     for (let x = sep / 2; x < ancho; x += sep) {
-      if (Math.random() < 0.55) columnas.push(nuevaColumna(x, true)); // no todas: que respire
+      if (Math.random() < 0.7) columnas.push(nuevaColumna(x, true)); // no todas: que respire
     }
     ctx.font = `500 ${tam}px ui-monospace, "SFMono-Regular", Consolas, monospace`;
     ctx.textAlign = "center";
@@ -62,7 +62,7 @@ export function iniciarFondoCodigo(contenedor) {
         const y = c.y - j * paso;
         if (y < -paso || y > alto + paso) continue;
         const cabeza = j === 0;
-        const a = cabeza ? 0.42 * c.brillo : 0.2 * c.brillo * (1 - j / c.largo);
+        const a = cabeza ? 0.62 * c.brillo : 0.32 * c.brillo * (1 - j / c.largo);
         ctx.fillStyle = cabeza ? `rgba(196, 181, 253, ${a})` : `rgba(139, 92, 246, ${a})`;
         ctx.fillText(c.chars[j], c.x, y);
       }
