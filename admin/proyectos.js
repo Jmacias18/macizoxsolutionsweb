@@ -8,6 +8,7 @@ import { $, aviso, kb, htmlError, setOcupado, confirmarEliminar } from "./ui.js"
 
 const CARPETA = "proyectos/";
 const AYUDA_CAPTURA = "Una captura de la pantalla principal del sitio. Se ve en la tarjeta antes de abrirlo.";
+const AYUDA_GALERIA = "Para sistemas con inicio de sesión: pantallas de adentro que el visitante ve sin entrar. Se muestran en este orden; usa ◀ para adelantar una.";
 
 let proyectos = [];
 let iniciado = false;
@@ -73,10 +74,11 @@ function render() {
 
 function itemHtml(p) {
   const img = p.imagen_url ? `<img src="${esc(p.imagen_url)}" alt="" loading="lazy" />` : icono("imagen");
-  const modo = p.url ? "Vista en vivo" : "Solo captura";
+  const n = p.galeria?.length || 0;
+  const modo = [p.url ? "Vista en vivo" : "", n ? `${n} captura${n === 1 ? "" : "s"}` : ""].filter(Boolean).join(" + ") || "Solo portada";
   return `
     <li class="equipo${p.publicado ? "" : " es-vendido"}" data-id="${p.id}">
-      ${p.url
+      ${p.url || n
         ? `<button type="button" class="miniatura ancha" data-accion="ver" aria-label="Ver ${esc(p.nombre)}">${img}</button>`
         : `<div class="miniatura ancha">${img}</div>`}
       <div class="equipo-info">
@@ -99,7 +101,7 @@ $("lista-proyectos").addEventListener("click", e => {
   if (!b) return;
   const p = proyectos.find(x => x.id === b.closest("[data-id]").dataset.id);
   if (!p) return;
-  if (b.dataset.accion === "ver") abrirNavegador({ nombre: p.nombre, url: p.url });
+  if (b.dataset.accion === "ver") abrirNavegador({ nombre: p.nombre, url: p.url, galeria: p.galeria || [] });
   if (b.dataset.accion === "editar") abrirFormulario(p);
   if (b.dataset.accion === "visible") alternarVisible(p, b);
   if (b.dataset.accion === "eliminar") pedirEliminar(p);
@@ -135,6 +137,7 @@ function pedirEliminar(p) {
         return false;
       }
       if (p.imagen_url) await fotos.borrar(p.imagen_url);
+      for (const url of p.galeria || []) await fotos.borrar(url);
       proyectos = proyectos.filter(x => x.id !== p.id);
       render();
       aviso(`“${p.nombre}” eliminado.`);
@@ -151,6 +154,7 @@ let editando = null;
 let capturaNueva = null;
 let quitarCaptura = false;
 let previewUrl = null;
+let galeriaItems = []; // en orden: { url } ya guardada, o { blob, preview } nueva
 
 $("p-tipo").innerHTML = TIPOS_PROYECTO.map(t => `<option value="${t.id}">${t.label}</option>`).join("");
 
@@ -170,6 +174,10 @@ function abrirFormulario(p = null) {
   liberarPreview();
   pintarCaptura(p?.imagen_url || null);
   $("captura-info").textContent = AYUDA_CAPTURA;
+  liberarGaleria();
+  galeriaItems = (p?.galeria || []).map(url => ({ url }));
+  pintarGaleria();
+  $("galeria-info").textContent = AYUDA_GALERIA;
   dlg.showModal();
   if (!p) form.nombre.focus({ preventScroll: true });
 }
@@ -251,6 +259,57 @@ $("captura-input").addEventListener("change", async e => {
   }
 });
 
+/* ---------- Galería: capturas de adentro ---------- */
+function liberarGaleria() {
+  galeriaItems.forEach(it => it.preview && URL.revokeObjectURL(it.preview));
+}
+
+function pintarGaleria() {
+  $("galeria-lista").innerHTML = galeriaItems.map((it, i) => `
+    <li class="galeria-item">
+      <img src="${esc(it.preview || it.url)}" alt="Captura ${i + 1}" loading="lazy" />
+      <span class="galeria-num">${i + 1}</span>
+      <span class="galeria-botones">
+        ${i > 0 ? `<button type="button" data-gal-subir="${i}" aria-label="Adelantar captura ${i + 1}">${icono("izquierda")}</button>` : ""}
+        <button type="button" data-gal-quitar="${i}" aria-label="Quitar captura ${i + 1}">${icono("cerrar")}</button>
+      </span>
+    </li>`).join("");
+}
+
+$("galeria-lista").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  if (b.dataset.galSubir) {
+    const i = Number(b.dataset.galSubir);
+    [galeriaItems[i - 1], galeriaItems[i]] = [galeriaItems[i], galeriaItems[i - 1]];
+  }
+  if (b.dataset.galQuitar) {
+    const [it] = galeriaItems.splice(Number(b.dataset.galQuitar), 1);
+    if (it.preview) URL.revokeObjectURL(it.preview);
+  }
+  pintarGaleria();
+});
+
+$("galeria-input").addEventListener("change", async e => {
+  const archivos = [...e.target.files];
+  e.target.value = "";
+  if (!archivos.length) return;
+  let antes = 0, despues = 0;
+  for (const [i, archivo] of archivos.entries()) {
+    $("galeria-info").textContent = `Comprimiendo ${i + 1} de ${archivos.length}…`;
+    try {
+      const blob = await fotos.comprimir(archivo, { ladoMax: 1600 });
+      galeriaItems.push({ blob, preview: URL.createObjectURL(blob) });
+      antes += archivo.size;
+      despues += blob.size;
+      pintarGaleria();
+    } catch (err) {
+      errorForm(`${archivo.name}: ${err.message || "no se pudo leer la imagen."}`);
+    }
+  }
+  $("galeria-info").textContent = despues ? `${kb(antes)} → ${kb(despues)}. ${AYUDA_GALERIA}` : AYUDA_GALERIA;
+});
+
 $("captura-quitar").addEventListener("click", () => {
   capturaNueva = null;
   quitarCaptura = true;
@@ -267,7 +326,7 @@ form.addEventListener("submit", async e => {
   if (!nombre) return errorCampo("nombre", "Escribe el nombre del proyecto, por ejemplo “TravelFlow”.");
   const { url, error: errorUrl } = leerUrl();
   if (errorUrl) return errorCampo("url", errorUrl);
-  if (!url && !capturaNueva && (quitarCaptura || !editando?.imagen_url)) {
+  if (!url && !galeriaItems.length && !capturaNueva && (quitarCaptura || !editando?.imagen_url)) {
     return errorForm("Agrega un enlace o una captura: sin ninguno de los dos, no hay nada que mostrar.");
   }
 
@@ -283,12 +342,24 @@ form.addEventListener("submit", async e => {
   ocupado(true);
   const anterior = editando?.imagen_url || null;
   let subida = null;
+  const subidasGaleria = [];
   try {
     if (capturaNueva) {
       subida = await fotos.subir(capturaNueva, CARPETA);
       fila.imagen_url = subida;
     } else if (quitarCaptura) {
       fila.imagen_url = null;
+    }
+
+    // Solo se manda "galeria" si hay capturas o si la columna ya existe (galeria.sql)
+    if (galeriaItems.length || (editando && "galeria" in editando)) {
+      fila.galeria = [];
+      for (const it of galeriaItems) {
+        if (it.url) { fila.galeria.push(it.url); continue; }
+        const nueva = await fotos.subir(it.blob, CARPETA);
+        subidasGaleria.push(nueva);
+        fila.galeria.push(nueva);
+      }
     }
 
     const consulta = editando
@@ -299,6 +370,9 @@ form.addEventListener("submit", async e => {
 
     // La captura vieja se borra solo cuando el cambio ya quedó guardado.
     if (anterior && (subida || quitarCaptura)) await fotos.borrar(anterior);
+    for (const vieja of editando?.galeria || []) {
+      if (!fila.galeria?.includes(vieja)) await fotos.borrar(vieja);
+    }
 
     reemplazar(data);
     ocupado(false);
@@ -306,7 +380,11 @@ form.addEventListener("submit", async e => {
     aviso(editando ? "Cambios guardados." : `“${data.nombre}” agregado al portafolio.`);
   } catch (err) {
     if (subida) await fotos.borrar(subida);
-    errorForm("No se guardó. Revisa tu conexión e inténtalo de nuevo. (" + (err.message || err) + ")");
+    for (const url of subidasGaleria) await fotos.borrar(url);
+    const sinColumna = /galeria/.test(err.message || "") && /column|schema cache/i.test(err.message || "");
+    errorForm(sinColumna
+      ? "Falta preparar la galería: ejecuta supabase/galeria.sql en el SQL Editor de Supabase y vuelve a guardar."
+      : "No se guardó. Revisa tu conexión e inténtalo de nuevo. (" + (err.message || err) + ")");
   } finally {
     ocupado(false);
   }
@@ -320,4 +398,4 @@ function ocupado(si) {
 }
 
 $("btn-nuevo-proyecto").addEventListener("click", () => abrirFormulario());
-dlg.addEventListener("close", liberarPreview);
+dlg.addEventListener("close", () => { liberarPreview(); liberarGaleria(); galeriaItems = []; });

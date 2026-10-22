@@ -400,7 +400,7 @@ async function cargarProyectos() {
   if (!configurado) return;
   const { data, error } = await supabase
     .from("proyectos")
-    .select("id, nombre, tipo, descripcion, url, imagen_url")
+    .select("*") // "*" para no fallar si aún no existe la columna galeria
     .eq("publicado", true)
     .order("orden", { ascending: true })
     .order("creado_en", { ascending: true });
@@ -417,6 +417,8 @@ function renderProyectos() {
 
   const box = document.getElementById("lista-proyectos");
   box.innerHTML = PROYECTOS.map((p, i) => {
+    const abre = p.url || p.galeria?.length;
+    const textoAbrir = p.galeria?.length ? "Ver proyecto" : "Ver en vivo";
     const portada = p.imagen_url
       ? `<img src="${esc(p.imagen_url)}" alt="Captura de ${esc(p.nombre)}" loading="lazy" decoding="async" />`
       : `<span class="proyecto-sin-imagen">${esc(p.nombre)}</span>`;
@@ -425,15 +427,15 @@ function renderProyectos() {
       <span class="proyecto-pantalla">${portada}</span>`;
     return `
       <article class="card proyecto" data-revelar style="--i:${i}" data-id="${p.id}">
-        ${p.url
+        ${abre
           ? `<button type="button" class="proyecto-vista" data-abrir aria-label="Abrir ${esc(p.nombre)} dentro de la página">${marco}
-               <span class="proyecto-abrir">${icono("ojo")} Ver en vivo</span></button>`
+               <span class="proyecto-abrir">${icono("ojo")} ${textoAbrir}</span></button>`
           : `<div class="proyecto-vista">${marco}</div>`}
         <div class="proyecto-info">
           <span class="product-cat">${esc(tipoProyecto(p.tipo)?.label || p.tipo)}</span>
           <h3>${esc(p.nombre)}</h3>
           ${p.descripcion ? `<p>${esc(p.descripcion)}</p>` : ""}
-          ${p.url ? `<button type="button" class="btn btn-ghost btn-sm" data-abrir>${icono("ojo")} Ver en vivo</button>` : ""}
+          ${abre ? `<button type="button" class="btn btn-ghost btn-sm" data-abrir>${icono("ojo")} ${textoAbrir}</button>` : ""}
         </div>
       </article>`;
   }).join("");
@@ -443,7 +445,7 @@ function renderProyectos() {
 document.getElementById("lista-proyectos").addEventListener("click", e => {
   if (!e.target.closest("[data-abrir]")) return;
   const p = PROYECTOS.find(x => x.id === e.target.closest("[data-id]").dataset.id);
-  if (p) abrirNavegador({ nombre: p.nombre, url: p.url });
+  if (p) abrirNavegador({ nombre: p.nombre, url: p.url, galeria: p.galeria || [] });
 });
 
 /* ==========================================================

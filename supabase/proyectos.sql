@@ -63,3 +63,7 @@ create policy "Admin ve fotos"
   on storage.objects for select
   to authenticated
   using (bucket_id = 'equipos' and public.es_admin());
+
+-- ---------- Galería de capturas (también en galeria.sql) ----------
+alter table public.proyectos
+  add column if not exists galeria text[] not null default '{}';

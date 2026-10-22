@@ -203,6 +203,18 @@
       </div>
 
       <div class="campo">
+        <span>Capturas de adentro (galería)</span>
+        <ul class="galeria-lista" id="galeria-lista" aria-label="Capturas de la galería"></ul>
+        <div class="captura-acciones">
+          <label class="btn btn-ghost btn-sm">
+            <input type="file" accept="image/*" multiple id="galeria-input" class="sr" />
+            <span>Agregar capturas</span>
+          </label>
+        </div>
+        <p class="campo-ayuda" id="galeria-info">Para sistemas con inicio de sesión: pantallas de adentro que el visitante ve sin entrar. Se muestran en este orden; usa ◀ para adelantar una.</p>
+      </div>
+
+      <div class="campo">
         <label for="p-nombre">Nombre <abbr title="obligatorio">*</abbr></label>
         <input id="p-nombre" name="nombre" required maxlength="80" autocomplete="off" enterkeyhint="next" aria-describedby="err-p-nombre" />
         <p class="campo-error" id="err-p-nombre" hidden></p>
