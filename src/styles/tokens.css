@@ -1,0 +1,139 @@
+/* ==========================================================
+   MacizoxSolutions · Design tokens
+   Única fuente de verdad para la tienda (/) y el panel (/admin).
+   Capas: primitivos → semánticos → componentes.
+   Los componentes solo usan semánticos o de componente, nunca primitivos.
+   ========================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---------- 1. Primitivos ---------- */
+  /* Neutros fríos con tinte violeta (no mezclar con grises cálidos) */
+  --ink-950: #0b0b12;
+  --ink-900: #13131d;
+  --ink-850: #181826;
+  --ink-800: #1f1f30;
+  --ink-700: #2a2a3e;
+  --ink-600: #3a3a52;
+  --ink-400: #9a9ab0;   /* 6.2:1 sobre ink-850 */
+  --ink-200: #c9c9d6;
+  --ink-50:  #f2f2f7;
+
+  --violet-300: #c4b5fd;
+  --violet-400: #a78bfa; /* 6.3:1 sobre ink-850: apto para texto */
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed; /* 5.7:1 con texto blanco */
+  --violet-700: #6d28d9;
+  --violet-900: #4c1d95;
+
+  --green-500: #25d366;  /* marca WhatsApp */
+  --green-950: #052e16;
+  --red-400: #f87171;
+  --red-600: #dc2626;
+  --red-700: #b91c1c;
+  --amber-400: #facc15;
+  --emerald-400: #4ade80;
+
+  /* ---------- 2. Semánticos ---------- */
+  --color-bg: var(--ink-950);
+  --color-bg-alt: var(--ink-900);
+  --color-surface: var(--ink-850);
+  --color-surface-raised: var(--ink-800);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+
+  --color-text: var(--ink-50);
+  --color-text-secondary: var(--ink-200);
+  --color-text-muted: var(--ink-400);
+
+  --color-accent: var(--violet-600);
+  --color-accent-hover: var(--violet-700);
+  --color-accent-text: var(--violet-400);
+  --color-accent-soft: rgba(124, 58, 237, 0.16);
+  --color-on-accent: #fff;
+
+  --color-whatsapp: var(--green-500);
+  --color-on-whatsapp: var(--green-950);
+
+  --color-danger: var(--red-600);
+  --color-danger-hover: var(--red-700);
+  --color-danger-text: var(--red-400);
+  --color-danger-soft: rgba(248, 113, 113, 0.1);
+  --color-success-text: var(--emerald-400);
+  --color-success-soft: rgba(74, 222, 128, 0.14);
+  --color-warning-text: var(--amber-400);
+  --color-warning-soft: rgba(250, 204, 21, 0.14);
+
+  --focus-ring: 0 0 0 3px rgba(167, 139, 250, 0.55);
+
+  /* Tipografía: escala 1.25 (Major Third) */
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-xs: 0.75rem;     /* 12 */
+  --text-sm: 0.875rem;    /* 14 */
+  --text-base: 1rem;      /* 16 */
+  --text-lg: 1.25rem;     /* 20 */
+  --text-xl: 1.5625rem;   /* 25 */
+  --text-2xl: 1.953rem;   /* 31 */
+  --text-3xl: 2.441rem;   /* 39 */
+  --text-4xl: 3.815rem;   /* 61 */
+  --leading-tight: 1.15;
+  --leading-body: 1.55;
+  --tracking-tight: -0.02em;
+  --tracking-caps: 0.12em;
+
+  /* Espaciado: retícula de 8 (4 para ajustes finos) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --gutter: 16px;
+
+  /* Radios: estilo redondeado (consumo) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* Elevación: en oscuro se sube con superficie, la sombra solo para flotantes */
+  --shadow-float: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  /* Acabado premium */
+  --glow-accent: 0 12px 32px -12px rgba(124, 58, 237, 0.75);
+  --glow-whatsapp: 0 12px 32px -12px rgba(37, 211, 102, 0.65);
+  --brillo-superior: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  --superficie-vidrio: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012));
+  --borde-degradado: linear-gradient(160deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04) 40%, rgba(167, 139, 250, 0.22));
+  --texto-degradado: linear-gradient(100deg, var(--violet-300), var(--violet-400) 45%, var(--violet-500));
+  --ruido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-press: 120ms;
+  --dur-fast: 160ms;
+  --dur-base: 220ms;
+  --dur-revelar: 800ms;   /* entradas al hacer scroll (solo tienda: contexto marca) */
+  --dur-ambiente: 32s;    /* deriva de la aurora */
+
+  /* ---------- 3. Componentes ---------- */
+  --control-h: 48px;
+  --control-h-sm: 44px;   /* mínimo tocable */
+  --btn-radius: var(--radius-full);
+  --input-radius: var(--radius-md);
+  --input-bg: var(--color-bg-alt);
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border);
+  --card-radius: var(--radius-lg);
+  --card-pad: var(--space-5);
+  --header-bg: rgba(11, 11, 18, 0.72);
+  --header-bg-scroll: rgba(11, 11, 18, 0.88);
+  --placeholder-bg: linear-gradient(135deg, #2a1a4d, #120c22);
+}

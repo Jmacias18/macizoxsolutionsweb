@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b0b12" />
+<meta name="color-scheme" content="dark" />
+<title>MacizoxSolutions | Desarrollo web, soporte y venta de equipos</title>
+<meta name="description" content="Páginas web, tiendas en línea, sistemas a medida, reparación y venta de computadoras y celulares en San Luis Río Colorado, Sonora." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" />
+<link rel="stylesheet" href="/src/styles/tokens.css" />
+<link rel="stylesheet" href="/src/styles/base.css" />
+<link rel="stylesheet" href="/src/styles/tienda.css" />
+<link rel="stylesheet" href="/src/styles/navegador.css" />
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<div class="fondo" aria-hidden="true"><span class="aurora a1"></span><span class="aurora a2"></span><span class="aurora a3"></span></div>
+
+<header id="cabecera">
+  <div class="container nav">
+    <a href="#inicio" class="logo" aria-label="MacizoxSolutions, inicio">MACIZOX<span>SOLUTIONS</span><small>DESARROLLO WEB · SOPORTE TÉCNICO</small></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#proyectos" id="nav-proyectos" hidden>Proyectos</a>
+      <a href="#tienda">Tienda</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#" class="btn btn-wa btn-sm" data-wa="Hola, quiero información sobre sus servicios.">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge entra" style="--d:0"><b>Nuevo nombre</b> MacizoxSolutions</span>
+        <h1 class="entra" style="--d:1">Tu presencia digital y tu equipo, <em>en un solo lugar</em></h1>
+        <p class="lead entra" style="--d:2">
+          Diseñamos páginas web, tiendas en línea y sistemas a la medida. Además reparamos y damos mantenimiento a tus computadoras y vendemos equipos nuevos y de segunda mano.
+        </p>
+        <div class="cta-row entra" style="--d:3">
+          <a href="#" class="btn btn-wa" data-wa="Hola, quiero cotizar un proyecto.">Cotizar por WhatsApp</a>
+          <a href="#tienda" class="btn btn-ghost">Ver productos</a>
+        </div>
+        <ul class="chips entra" style="--d:4" aria-label="Lo que hacemos">
+          <li class="chip">Páginas web</li>
+          <li class="chip">Tiendas en línea</li>
+          <li class="chip">Sistemas a medida</li>
+          <li class="chip">Reparación de equipos</li>
+          <li class="chip">Venta de equipos</li>
+        </ul>
+      </div>
+
+      <!-- Vitrina decorativa (escritorio): se llena con equipos reales del catálogo -->
+      <div class="vitrina entra" style="--d:3" aria-hidden="true">
+        <div class="vitrina-card">
+          <div class="vitrina-barra"><i></i><i></i><i></i><span>Tienda MacizoxSolutions</span></div>
+          <div id="vitrina-items"></div>
+          <div class="vitrina-cta">Pedir por WhatsApp</div>
+        </div>
+        <div class="vitrina-sello s1"><span class="punto"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Diagnóstico claro antes de empezar</div>
+        <div class="vitrina-sello s2"><span class="punto"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Garantía en todos los servicios</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="con-luz">
+    <div class="container">
+      <span class="eyebrow" data-revelar>Servicios</span>
+      <h2 data-revelar style="--i:1">Lo que hacemos por ti</h2>
+      <p class="lead" data-revelar style="--i:2">Desde tu sitio en internet hasta el equipo que usas todos los días.</p>
+
+      <div class="services">
+        <article class="card service" data-revelar style="--i:0">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+          <h3>Desarrollo web</h3>
+          <p>Sitios hechos a tu medida, rápidos y listos para celular.</p>
+          <ul>
+            <li>Páginas web de presentación</li>
+            <li>Landing pages para promociones</li>
+            <li>Diseño responsive</li>
+          </ul>
+        </article>
+
+        <article class="card service" data-revelar style="--i:1">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.25"/><circle cx="18" cy="20" r="1.25"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.5L21 8H6"/></svg></div>
+          <h3>Tiendas en línea</h3>
+          <p>Vende tus productos por internet con catálogo y pedidos.</p>
+          <ul>
+            <li>Catálogo de productos</li>
+            <li>Pedidos y pagos en línea</li>
+            <li>Panel para administrar tu inventario</li>
+          </ul>
+        </article>
+
+        <article class="card service" data-revelar style="--i:2">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <h3>Sistemas a medida</h3>
+          <p>Herramientas que resuelven lo que tu negocio necesita.</p>
+          <ul>
+            <li>Control de ventas e inventario</li>
+            <li>Administración de clientes</li>
+            <li>Automatización de procesos</li>
+          </ul>
+        </article>
+
+        <article class="card service" data-revelar style="--i:3">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3>Reparación y mantenimiento</h3>
+          <p>Tu computadora como nueva, con diagnóstico claro antes de empezar.</p>
+          <ul>
+            <li>Laptops y PC de escritorio</li>
+            <li>Formateo e instalación de sistemas</li>
+            <li>Reparación de hardware y software</li>
+            <li>Limpieza interna y cambio de pasta térmica</li>
+            <li>Upgrades y mantenimiento preventivo</li>
+          </ul>
+        </article>
+
+        <article class="card service" data-revelar style="--i:4">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 15a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2zM3 15a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z"/><path d="M19 17v1a3 3 0 0 1-3 3h-3"/></svg></div>
+          <h3>Soporte técnico</h3>
+          <p>Atención profesional para empresas y particulares.</p>
+          <ul>
+            <li>Asesoría personalizada</li>
+            <li>Soporte para tu página o sistema</li>
+            <li>Mantenimiento de equipos y redes</li>
+          </ul>
+        </article>
+
+        <article class="card service" data-revelar style="--i:5">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3>Venta de equipos</h3>
+          <p>Computadoras, celulares, componentes y accesorios.</p>
+          <ul>
+            <li>Computadoras y componentes</li>
+            <li>Celulares y tablets</li>
+            <li>Accesorios y periféricos</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS (se administran en /admin; la sección se oculta si no hay publicados) -->
+  <section id="proyectos" class="con-luz" hidden>
+    <div class="container">
+      <span class="eyebrow" data-revelar>Proyectos</span>
+      <h2 data-revelar style="--i:1">Proyectos que hemos desarrollado</h2>
+      <p class="lead" data-revelar style="--i:2">Ábrelos aquí mismo y navega como si estuvieras en el sitio.</p>
+
+      <div class="proyectos" id="lista-proyectos"></div>
+
+      <div class="proyectos-cta" data-revelar>
+        <p><strong>¿Quieres algo así para tu negocio?</strong> Platiquemos tu idea y te damos una cotización sin compromiso.</p>
+        <a href="#" class="btn btn-primary" data-wa="Hola, vi sus proyectos y quiero cotizar uno para mi negocio.">Cotizar mi proyecto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ NOSOTROS -->
+  <section class="why con-luz">
+    <div class="container">
+      <span class="eyebrow" data-revelar>Por qué elegirnos</span>
+      <h2 data-revelar style="--i:1">Mismo equipo, más soluciones</h2>
+      <ol class="why-list">
+        <li class="why-item" data-revelar style="--i:0"><strong>Atención personalizada</strong><span>Te escuchamos y te damos la opción que realmente necesitas.</span></li>
+        <li class="why-item" data-revelar style="--i:1"><strong>Cotizaciones sin compromiso</strong><span>Pide tu presupuesto sin compromiso.</span></li>
+        <li class="why-item" data-revelar style="--i:2"><strong>Garantía en todos los servicios</strong><span>Respaldamos nuestro trabajo.</span></li>
+        <li class="why-item" data-revelar style="--i:3"><strong>Precios competitivos</strong><span>Buena calidad a un precio justo.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- TIENDA -->
+  <section id="tienda" class="con-luz">
+    <div class="container">
+      <span class="eyebrow" data-revelar>Tienda</span>
+      <h2 data-revelar style="--i:1">Equipos disponibles</h2>
+      <p class="lead" data-revelar style="--i:2">Productos nuevos y de segunda mano. Pide el tuyo por WhatsApp y te confirmamos disponibilidad.</p>
+
+      <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+      <div class="products" id="products" aria-live="polite" aria-busy="true">
+        <!-- Esqueletos mientras carga -->
+        <div class="card product cargando" aria-hidden="true"><div class="product-img skeleton"></div><div class="product-body"><span class="sk-linea skeleton" style="width:40%"></span><span class="sk-linea skeleton" style="width:80%"></span><span class="sk-linea skeleton" style="width:60%"></span></div></div>
+        <div class="card product cargando" aria-hidden="true"><div class="product-img skeleton"></div><div class="product-body"><span class="sk-linea skeleton" style="width:40%"></span><span class="sk-linea skeleton" style="width:80%"></span><span class="sk-linea skeleton" style="width:60%"></span></div></div>
+        <div class="card product cargando" aria-hidden="true"><div class="product-img skeleton"></div><div class="product-body"><span class="sk-linea skeleton" style="width:40%"></span><span class="sk-linea skeleton" style="width:80%"></span><span class="sk-linea skeleton" style="width:60%"></span></div></div>
+      </div>
+      <div class="empty" id="empty" hidden>
+        <strong id="empty-titulo">Por ahora no hay equipos en esta categoría</strong>
+        <p id="empty-texto">Nos llegan equipos seguido. Dinos qué buscas y te avisamos cuando tengamos uno.</p>
+        <a href="#" class="btn btn-wa btn-sm" data-wa="Hola, estoy buscando un equipo. ¿Me avisan cuando tengan?">Preguntar por WhatsApp</a>
+      </div>
+
+      <p class="note" data-revelar>
+        Los precios están en pesos mexicanos (MXN). Si un producto dice "Consultar precio", escríbenos para la cotización actualizada.
+      </p>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section style="padding-top: 0;">
+    <div class="container">
+      <div class="banner" data-revelar>
+        <div>
+          <h2>¿Tienes un proyecto en mente?</h2>
+          <p>Escríbenos hoy y arranca tu página web, tu tienda o tu sistema con MacizoxSolutions.</p>
+        </div>
+        <a href="#" class="btn btn-light" data-wa="Hola, quiero cotizar un proyecto.">Pedir cotización</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <span class="eyebrow" data-revelar>Contacto</span>
+      <h2 data-revelar style="--i:1">Platiquemos</h2>
+      <p class="lead" data-revelar style="--i:2">Estamos en San Luis Río Colorado, Sonora. Hacemos entrega personal.</p>
+
+      <div class="contact-grid">
+        <a href="#" class="card contact-item" data-revelar style="--i:0" data-wa="Hola, quiero información.">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></div>
+          <div><small>WhatsApp</small><strong>653 110 6908</strong></div>
+        </a>
+        <a href="tel:+522296178337" class="card contact-item" data-revelar style="--i:1">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><small>Teléfono</small><strong>229 617 8337</strong></div>
+        </a>
+        <a href="https://instagram.com/macizoxsolutions" target="_blank" rel="noopener" class="card contact-item" data-revelar style="--i:2">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></div>
+          <div><small>Instagram</small><strong>@macizoxsolutions</strong></div>
+        </a>
+        <div class="card contact-item" data-revelar style="--i:3">
+          <div class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><small>Ubicación</small><strong>San Luis Río Colorado, Sonora</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© <span id="year"></span> MacizoxSolutions · Desarrollo web y soporte técnico</span>
+    <span>Ing. José Macías · Ingeniero en sistemas computacionales</span>
+  </div>
+</footer>
+
+<a href="#" class="wa-float" id="waFloat" aria-label="Escríbenos por WhatsApp" data-wa="Hola, quiero información.">
+  <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+</a>
+
+<script type="module">
+import { icono } from "/src/iconos.js";
+import { supabase, configurado } from "/src/supabase.js";
+import { CATEGORIAS, condicion, money, esc, tipoProyecto } from "/src/catalogo.js";
+import { abrirNavegador } from "/src/navegador.js";
+
+/* ==========================================================
+   CONFIGURACIÓN
+   ========================================================== */
+const WHATSAPP_NUMBER = "526531106908"; // 52 + tu número con lada
+
+/*
+  Los equipos se administran en /admin y se leen de Supabase (tabla "equipos").
+  Las reglas de seguridad (RLS) ya ocultan los vendidos al público.
+*/
+let EQUIPOS = [];
+
+const CATEGORIES = [{ id: "todos", label: "Todos" }, ...CATEGORIAS];
+
+/* ==========================================================
+   LÓGICA
+   ========================================================== */
+const catLabel = id => CATEGORIES.find(c => c.id === id)?.label || id;
+
+function waLink(msg) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+async function cargarEquipos() {
+  if (!configurado) return mostrarError();
+  const { data, error } = await supabase
+    .from("equipos")
+    .select("id, nombre, categoria, descripcion, precio, desde, condicion, estado, foto_url")
+    .neq("estado", "vendido")
+    .order("creado_en", { ascending: false });
+  if (error) {
+    console.error("No se pudo cargar el catálogo", error);
+    return mostrarError();
+  }
+  EQUIPOS = data;
+  renderVitrina();
+  renderProducts("todos");
+}
+
+function mostrarError() {
+  const list = document.getElementById("products");
+  list.innerHTML = "";
+  list.setAttribute("aria-busy", "false");
+  document.getElementById("empty-titulo").textContent = "No pudimos cargar el catálogo";
+  document.getElementById("empty-texto").textContent = "Revisa tu conexión o escríbenos y te decimos qué equipos hay disponibles.";
+  document.getElementById("empty").hidden = false;
+  document.querySelector(".vitrina").hidden = true;
+}
+
+function renderFilters(active) {
+  const box = document.getElementById("filters");
+  box.innerHTML = "";
+  CATEGORIES.forEach(c => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "filter";
+    b.setAttribute("aria-pressed", c.id === active);
+    b.textContent = c.label;
+    b.onclick = () => renderProducts(c.id);
+    box.appendChild(b);
+  });
+}
+
+// Foto del equipo; si no tiene o falla al cargar, ícono de su categoría
+function fotoHtml(p) {
+  return p.foto_url
+    ? `<img src="${esc(p.foto_url)}" alt="${esc(p.nombre)}" loading="lazy" decoding="async" />`
+    : icono(p.categoria);
+}
+function respaldoFoto(contenedor, p) {
+  contenedor.querySelector("img")?.addEventListener("error", e => {
+    e.target.outerHTML = icono(p.categoria);
+  }, { once: true });
+}
+
+function renderProducts(cat = "todos") {
+  renderFilters(cat);
+  const list = document.getElementById("products");
+  const empty = document.getElementById("empty");
+  list.querySelectorAll("[data-revelar]").forEach(el => observador?.unobserve(el));
+  list.innerHTML = "";
+  list.setAttribute("aria-busy", "false");
+
+  const items = EQUIPOS.filter(p => cat === "todos" || p.categoria === cat);
+  document.getElementById("empty-titulo").textContent = EQUIPOS.length
+    ? "Por ahora no hay equipos en esta categoría"
+    : "Estamos renovando el catálogo";
+  document.getElementById("empty-texto").textContent = "Nos llegan equipos seguido. Dinos qué buscas y te avisamos cuando tengamos uno.";
+  empty.hidden = items.length > 0;
+
+  items.forEach((p, i) => {
+    const art = document.createElement("article");
+    art.className = "card product";
+    art.dataset.revelar = "";
+    art.style.setProperty("--i", i);
+
+    const cond = condicion(p.condicion);
+    const priceHtml = p.precio != null
+      ? `<div class="price">${p.desde ? `<span class="desde">desde</span>` : ""}${money(p.precio)}<small>MXN</small></div>`
+      : `<div class="price consult">Consultar precio</div>`;
+
+    art.innerHTML = `
+      <div class="product-img">
+        ${fotoHtml(p)}
+        ${p.estado === "apartado" ? `<span class="tag-apartado">Apartado</span>` : ""}
+      </div>
+      <div class="product-body">
+        <span class="product-cat">${esc(catLabel(p.categoria))}${cond ? ` · ${cond.label}` : ""}</span>
+        <h3>${esc(p.nombre)}</h3>
+        <p>${esc(p.descripcion)}</p>
+        ${priceHtml}
+        <a class="btn btn-wa btn-sm" target="_blank" rel="noopener"
+           href="${esc(waLink(`Hola, me interesa: ${p.nombre}. ¿Sigue disponible?`))}">Pedir por WhatsApp</a>
+      </div>
+    `;
+    respaldoFoto(art, p);
+    list.appendChild(art);
+    revelar(art);
+  });
+}
+
+/* ==========================================================
+   PROYECTOS: se abren en el navegador interno, sin mostrar su dirección
+   ========================================================== */
+let PROYECTOS = [];
+
+async function cargarProyectos() {
+  if (!configurado) return;
+  const { data, error } = await supabase
+    .from("proyectos")
+    .select("id, nombre, tipo, descripcion, url, imagen_url")
+    .eq("publicado", true)
+    .order("orden", { ascending: true })
+    .order("creado_en", { ascending: true });
+  if (error) return console.error("No se pudieron cargar los proyectos", error);
+  PROYECTOS = data;
+  renderProyectos();
+}
+
+function renderProyectos() {
+  const hay = PROYECTOS.length > 0;
+  document.getElementById("proyectos").hidden = !hay;
+  document.getElementById("nav-proyectos").hidden = !hay;
+  if (!hay) return;
+
+  const box = document.getElementById("lista-proyectos");
+  box.innerHTML = PROYECTOS.map((p, i) => {
+    const portada = p.imagen_url
+      ? `<img src="${esc(p.imagen_url)}" alt="Captura de ${esc(p.nombre)}" loading="lazy" decoding="async" />`
+      : `<span class="proyecto-sin-imagen">${esc(p.nombre)}</span>`;
+    const marco = `
+      <span class="proyecto-barra" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="proyecto-pantalla">${portada}</span>`;
+    return `
+      <article class="card proyecto" data-revelar style="--i:${i}" data-id="${p.id}">
+        ${p.url
+          ? `<button type="button" class="proyecto-vista" data-abrir aria-label="Abrir ${esc(p.nombre)} dentro de la página">${marco}
+               <span class="proyecto-abrir">${icono("ojo")} Ver en vivo</span></button>`
+          : `<div class="proyecto-vista">${marco}</div>`}
+        <div class="proyecto-info">
+          <span class="product-cat">${esc(tipoProyecto(p.tipo)?.label || p.tipo)}</span>
+          <h3>${esc(p.nombre)}</h3>
+          ${p.descripcion ? `<p>${esc(p.descripcion)}</p>` : ""}
+          ${p.url ? `<button type="button" class="btn btn-ghost btn-sm" data-abrir>${icono("ojo")} Ver en vivo</button>` : ""}
+        </div>
+      </article>`;
+  }).join("");
+  box.querySelectorAll("[data-revelar]").forEach(revelar);
+}
+
+document.getElementById("lista-proyectos").addEventListener("click", e => {
+  if (!e.target.closest("[data-abrir]")) return;
+  const p = PROYECTOS.find(x => x.id === e.target.closest("[data-id]").dataset.id);
+  if (p) abrirNavegador({ nombre: p.nombre, url: p.url });
+});
+
+/* ==========================================================
+   ACABADO: vitrina, cabecera, revelado y reflejo del cursor
+   ========================================================== */
+
+// Vitrina del hero: los 3 equipos más recientes del catálogo (no datos inventados)
+function renderVitrina() {
+  const vitrina = document.querySelector(".vitrina");
+  const box = document.getElementById("vitrina-items");
+  const items = EQUIPOS.slice(0, 3);
+  vitrina.hidden = items.length === 0;
+  box.innerHTML = items.map(p => `
+    <div class="vitrina-item">
+      <div class="mini">${fotoHtml(p)}</div>
+      <div><strong>${esc(p.nombre)}</strong><small>${esc(p.descripcion)}</small></div>
+      ${p.precio != null ? `<em>${p.desde ? `<small>desde</small>` : ""}${money(p.precio)}</em>` : `<em class="consultar">Consultar</em>`}
+    </div>`).join("");
+  box.querySelectorAll(".vitrina-item").forEach((el, i) => respaldoFoto(el, items[i]));
+}
+
+// Cabecera: se vuelve sólida al bajar
+const cabecera = document.getElementById("cabecera");
+const marcarScroll = () => cabecera.classList.toggle("con-scroll", scrollY > 8);
+addEventListener("scroll", marcarScroll, { passive: true });
+marcarScroll();
+
+// Revelado al entrar en pantalla (una sola vez). Al terminar se quita el atributo
+// para que el hover use sus propias transiciones rápidas.
+const observador = "IntersectionObserver" in window
+  ? new IntersectionObserver(entradas => {
+      entradas.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("visible");
+        observador.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 })
+  : null;
+
+function revelar(el) {
+  if (!observador) return el.classList.add("visible");
+  el.addEventListener("transitionend", function fin(ev) {
+    if (ev.target !== el || ev.propertyName !== "opacity") return;
+    el.removeAttribute("data-revelar");
+    el.classList.remove("visible");
+    el.removeEventListener("transitionend", fin);
+  });
+  observador.observe(el);
+}
+document.querySelectorAll("[data-revelar]").forEach(revelar);
+
+// Reflejo que sigue al cursor en tarjetas (solo mouse)
+if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  document.addEventListener("pointermove", e => {
+    const card = e.target.closest?.(".card");
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    card.style.setProperty("--my", `${e.clientY - r.top}px`);
+  }, { passive: true });
+}
+
+// Botones que abren WhatsApp con mensaje prellenado
+document.querySelectorAll("[data-wa]").forEach(el => {
+  el.href = waLink(el.dataset.wa);
+  el.target = "_blank";
+  el.rel = "noopener";
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+cargarEquipos();
+cargarProyectos();
+</script>
+</body>
+</html>
