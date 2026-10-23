@@ -8,3 +8,7 @@ dist/
 
 .vercel/
 .DS_Store
+
+# Notas locales (no subir)
+CLAUDE.md
+.claude/
